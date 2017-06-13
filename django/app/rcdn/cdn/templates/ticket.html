@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Ticket{% endblock %}
+{% block body %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %} alert-dismissible"
+                 role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="btn-group btn-group-ctrl" role="group">
+        <a type="button" class="btn btn-default" href="{% url 'ticket_new' %}"><i class="fa fa-plus"
+                                                                                 aria-hidden="true"></i> New Technical Support</a>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th width="60%">Subject</th>
+            <th width="15%">Status</th>
+            <th width="25%">Last Update</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in rec %}
+            <tr>
+                <td><a href="{% url 'ticket_detail' tid=i.tid %}">{{ i.subject }}</a></td>
+                <td>{{ i.get_status_display }}</td>
+                <td>{{ i.updatetime }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

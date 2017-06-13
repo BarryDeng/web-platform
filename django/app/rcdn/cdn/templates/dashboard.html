@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block body %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %} alert-dismissible"
+                 role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="btn-group btn-group-ctrl" role="group">
+        <a type="button" class="btn btn-default" href="{% url 'basic_new' %}"><i class="fa fa-plus"
+                                                                                 aria-hidden="true"></i> New Basic
+            CDN</a>
+        <a type="button" class="btn btn-default" href="{% url "gopro" %}"><i class="fa fa-plus"
+                                                                             aria-hidden="true"></i> New Pro CDN</a>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th width="35%">Subdomain</th>
+            <th width="20%">Status</th>
+            <th width="15%">Plan</th>
+            <th>Operation</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in rec %}
+            <tr>
+                <td>{{ i.subdomain }}</td>
+                <td>{{ i.get_status_display }}</td>
+                <td>{{ i.get_plan_display }}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a type="button" class="btn btn-default" href="#" data-toggle="modal"
+                           data-target="#PendingModal">Overview</a>
+                        <a type="button" class="btn btn-default" href="#" data-toggle="modal"
+                           data-target="#PendingModal">Suspend</a>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                More
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header">Advanced</li>
+                                <li><a href="#" data-toggle="modal" data-target="#PendingModal">Header Rules</a></li>
+                                <li class="disabled"><a href="{% url 'pro_cname' param=i.subdomain %}">Bind CNAME
+                                    (Pro)</a></li>
+                                <li class="disabled"><a href="{% url 'pro_sslcert' param=i.subdomain %}">SSL Certs (Pro)</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Support</li>
+                                <li class="disabled"><a href="tel:337845818">Phone (Pro)</a></li>
+                                <li><a href="mailto:support@rcdn.network.nonexist">Email</a></li>
+                                <li class="disabled"><a href="{% url 'ticket' %}">Ticket (Pro)</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Dangerous Actions</li>
+                                <li><a href="#" data-toggle="modal" data-target="#PendingModal">Reset all</a></li>
+                                <li><a href="{% url "basic_destroy" psubdomain=i.subdomain %}">Destroy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if rec.count %}
+        <div class="modal fade" id="PendingModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Sorry</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>This action is temporarily unavailable.</p>
+                        <p>Your Basic CDN Service is still pending. Usually it takes 48 hours for newly created Basic
+                            CDN
+                            service to be activated.</p>
+                        <p><a href="{% url "gopro" %}">Go Pro</a> for immediate processing and exciting experience!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

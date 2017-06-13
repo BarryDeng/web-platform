@@ -1,0 +1,14 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "src",
+    "node_modules/**/node_modules"
+  ],
+  "verbose": true,
+  "env": {
+    "NODE_ENV": "production",
+    "REDIS_HOST": "10.211.55.6"
+  },
+  "ext": "js json"
+}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Ticket{% endblock %}
+{% block body %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %} alert-dismissible"
+                 role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="page-header">
+        <h3>Ticket #{{ rec.tid }} <span
+                class="label label-{% if rec.status == '0' %}success{% else %}default{% endif %}">{{ rec.get_status_display }}</span>
+        </h3>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ rec.subject }}</h3>
+        </div>
+        <div class="panel-body">
+            <span>Related service: <a href="http://{{ rec.subdomain }}.rstatic.cal1.cn/">http://{{ rec.subdomain }}.rstatic.cal1.cn/</a></span>
+            <br>
+            <span style="white-space: pre">{{ rec.message }}</span>
+        </div>
+    </div>
+    {% if rec.reply %}
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">RCDN Technical Support</h3>
+            </div>
+            <div class="panel-body">
+                <span style="white-space: pre">{{ rec.reply }}</span>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

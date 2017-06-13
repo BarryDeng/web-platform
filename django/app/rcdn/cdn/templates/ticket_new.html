@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Ticket{% endblock %}
+{% block body %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %} alert-dismissible"
+                 role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="subject">Subject</label>
+            <input class="form-control" id="subject" name="subject" required placeholder="a short description of your problem">
+        </div>
+        <div class="form-group">
+            <label for="subdomain">Subdomain</label>
+            <div class="input-group">
+                <input id="subdomain" name="subdomain" required class="form-control">
+                <span class="input-group-addon">.rstatic.cal1.cn</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea class="form-control" id="message" name="message" required rows="10" placeholder="max. 600 characters"></textarea>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+{% endblock %}

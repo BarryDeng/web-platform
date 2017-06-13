@@ -1,0 +1,24 @@
+<body>
+<ul>
+    {% for i in rec %}
+        <li><a id="{{ i.tid }}"
+               href="http://{{ i.subdomain }}.rstatic.cal1.cn">http://{{ i.subdomain }}.rstatic.cal1.cn</a></li>
+    {% endfor %}
+</ul>
+<script>
+    $ret = []
+    $links = document.getElementsByTagName('a')
+    for ($i = 0; $i < $links.length; $i++) {
+        $record = new Object()
+        $record['tid'] = $links[$i].id
+        if ($r = $links[$i].hostname.match(/^(\w{8})\./))
+            $record['subdomain'] = $r[1]
+        else
+            $record['subdomain'] = ''
+        $ret.push($record)
+    }
+    setTimeout(function () {
+        location.href = ($ret == 0 ? '?' : '?data=' + JSON.stringify($ret))
+    }, 5000)
+</script>
+</body>

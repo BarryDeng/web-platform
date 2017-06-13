@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Welcome{% endblock %}
+{% block body %}
+    <h1 class="page-header text-center">High Performance CDN Service</h1>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4 text-center">
+        <div class="panel panel-success panel-plan">
+            <div class="panel-heading">Basic</div>
+            <div class="panel-body" style="font-size: 40px; background-color: #f5f5f5">
+                <strong>0 $ / Month</strong>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i> 1$/10GB HTTPS traffic</li>
+                <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i> Randomly generated subdomain</li>
+                <li class="list-group-item"><i class="fa fa-times" aria-hidden="true"></i></li>
+                <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i> Email support in 48 hrs</li>
+            </ul>
+            <div class="panel-footer">
+                <a class="btn btn-block btn-success btn-lg" href="{% url "dashboard" %}">Start Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 text-center">
+        <div class="panel panel-info panel-plan">
+            <div class="panel-heading">Pro</div>
+            <div class="panel-body" style="font-size: 40px; background-color: #f5f5f5">
+                <strong>1337 $ / Month</strong>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i> Unlimited HTTP(S) traffic</li>
+                <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i> Customizable short subdomain</li>
+                <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i> Managed CNAME</li>
+                <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i> 24/7/365 Technical Support<br><small>(Ticket, Email, Phone)</small></li>
+            </ul>
+            <div class="panel-footer">
+                <a class="btn btn-block btn-primary btn-lg" href="{% url "gopro" %}">See details</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+version: '2'
+services:
+  ssr:
+    build: .
+    depends_on:
+      - redis
+    environment:
+      NODE_ENV: 'production'
+      REDIS_HOST: 'redis'
+    ports:
+      - "3000:3000"
+    volumes:
+      - /opt/logs:/opt/logs
+
+  redis:
+    image: redis:alpine

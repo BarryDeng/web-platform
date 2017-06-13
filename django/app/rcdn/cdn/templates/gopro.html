@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Go Pro!{% endblock %}
+{% block body %}
+    <div class="page-header">
+        <h1>Why Pro?
+            <small>You make RCDN better!</small>
+        </h1>
+    </div>
+
+    <div class="media">
+        <div class="media-left">
+            <i class="fa fa-globe fa-2x" aria-hidden="true"></i>
+        </div>
+        <div class="media-body">
+            <h3 class="media-heading">Unlimited traffic</h3>
+            <p>All HTTP/HTTPS traffic is unlimited with super smart DDoS protection.</p>
+        </div>
+    </div>
+
+    <div class="media">
+        <div class="media-left">
+            <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+        </div>
+        <div class="media-body">
+            <h3 class="media-heading">Customizable subdomain and CNAME</h3>
+            <p>Short subdomain (3~6 chars) is only available for Pro account.</p>
+            <p>You can also set CNAME record on your short subdomains (eg. static.yourdomain.com)</p>
+        </div>
+    </div>
+
+    <div class="media">
+        <div class="media-left">
+            <i class="fa fa-users fa-2x" aria-hidden="true"></i>
+        </div>
+        <div class="media-body">
+            <h3 class="media-heading">24x7 Dedicated support team</h3>
+            <p>Contact us by phone, ticket or email and get instant response.</p>
+        </div>
+    </div>
+
+    <!--
+    <div class="media">
+        <div class="media-left">
+            <i class="fa fa-flag fa-2x" aria-hidden="true"></i>
+        </div>
+        <div class="media-body">
+            <h3 class="media-heading">We have everything you want</h3>
+            <p>Only for Pros!</p>
+        </div>
+    </div>
+    -->
+    <button type="button" class="btn btn-primary btn-lg" onclick="alert('You can\'t afford this =\\')">
+        <i class="fa fa-shopping-cart" aria-hidden="true"> Go Pro Now</i>
+    </button>
+{% endblock %}
